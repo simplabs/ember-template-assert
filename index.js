@@ -1,5 +1,7 @@
 'use strict';
 
+const Funnel = require('broccoli-funnel');
+
 module.exports = {
   name: require('./package').name,
 
@@ -28,5 +30,16 @@ module.exports = {
       baseDir: emberTemplateAssertTransform.baseDir,
       cacheKey: emberTemplateAssertTransform.cacheKey,
     };
+  },
+
+  treeForAddon(tree) {
+    let app = this._findHost();
+    if (!app.tests) {
+      tree = new Funnel(tree, {
+        exclude: ['helpers/assert.js'],
+      });
+    }
+
+    return this._super.treeForAddon.call(this, tree);
   },
 };
