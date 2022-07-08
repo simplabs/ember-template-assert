@@ -19,12 +19,12 @@ module('Integration | Helper | assert', function (hooks) {
     assert.expect(1);
 
     Ember.onerror = () => {
-      assert.ok(false);
+      assert.ok(false, 'This should not run.');
     };
 
     await render(hbs`{{assert "Some assertion message" true}}`);
 
-    assert.ok(true);
+    assert.ok(true, 'Renders normally');
   });
 
   test('it fails to render when the assertion is falsy', async function (assert) {
