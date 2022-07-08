@@ -11,7 +11,7 @@ module('Integration | Helper | assert', function (hooks) {
     this.emberOnError = Ember.onerror;
   });
 
-  hooks.afterEach(function() {
+  hooks.afterEach(function () {
     Ember.onerror = this.emberOnError;
   });
 
